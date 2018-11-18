@@ -18,7 +18,7 @@ def getURLs():
     #print(url)
     #print(title)
 
-def datfile():
+def getALL():
     getURLs()
     for thread_title, dat in zip(title, url):
         print(thread_title,dat)#スレタイとURL
@@ -67,9 +67,10 @@ def makefile():
 
 '''
 
-#ID = input('記入方法は【ID:OOOOOOO】>>')
+
+ID = input('記入方法は【ID:OOOOOOO】>>')
 #getURLs()
-datfile()
+getALL()
 
 '''
 終わったこと
