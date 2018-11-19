@@ -22,9 +22,6 @@ def getALL():
     getURLs()
     for thread_title, dat in zip(title, url):
         print(thread_title,dat)#スレタイとURL
-        #with open('/Users/hbk/Documents/code/hisshi.txt','w') as file:
-        #    file.write(thread_title)
-        #    file.write(dat)
 
         subject = dat
         request = urllib.request.Request(url=subject, headers=headers)#datとheaderのデータを入れる
@@ -35,37 +32,33 @@ def getALL():
             print(text)
             #ファイルの書き込み
             if os.path.exists("./hisshi.txt"):
-                with open('./hisshi.txt','a') as file:
-                #with open('./+str(ID)+.txt','a') as file:
-                #ここに文字列検索を入れる。もし、IDが見つかったら、スレタイとURLを記載する。textからIDが見つかったら、記入、改行する。
-                    file.write(thread_title)
-                    file.write(dat+str('\n'))
-                    file.write(text)
-                    file.write(str('\n'))
-            else:
-                with open('./hisshi.txt','w') as file:
-                #with open('./+str(ID)+.txt','w') as file:
-                #ここに文字列検索を入れる。もし、IDが見つかったら、スレタイとURLを記載する。textからIDが見つかったら、記入、改行する。
 
-                    file.write(thread_title)
-                    file.write(dat+str('\n'))
-                    file.write(text)
-                    file.write(str('\n'))
+            #with open('./hisshi.txt','a') as file:
+                with open('./'+str(ID)+'.txt','a') as file:  #IDをテキスト名に
+                    if str(ID) in text:
+                        #ここに文字列検索を入れる。もし、IDが見つかったら、スレタイとURLを記載する。textからIDが見つかったら、記入、改行する。
+                        file.write(thread_title)
+                        file.write(dat+str('\n'))
+                        file.write(text)
+                        file.write(str('\n'))
+
+
+
+            else:
+                #with open('./hisshi.txt','w') as file:
+                with open('./'+str(ID)+'.txt','w') as file:
+
+                    if str(ID) in text:
+                        #ここに文字列検索を入れる。もし、IDが見つかったら、スレタイとURLを記載する。textからIDが見つかったら、記入、改行する。
+                        file.write(thread_title)
+                        file.write(dat+str('\n'))
+                        response = [i for i in text if str(ID) in text]
+                        file.write(response+str('\n'))
+                        #file.write(str('\n'))
+
             #continue
         #continue
 
-
-
-
-'''
-def makefile():
-    getURLs()
-    #ファイルの書き込み
-    with open('/Users/hbk/Documents/code/hisshi.txt','w') as file:
-        write = [i for i in url]
-        file.write(str(write))
-
-'''
 
 
 ID = input('記入方法は【ID:OOOOOOO】>>')
