@@ -60,28 +60,33 @@ def getALL():
             #continue
         #continue
 
-
+def format():
+    with open('./'+str(ID)+'.txt','r') as file:
+        raw = file.read()
+        format = raw.replace('<br>','\n').replace('<><>','\b').replace('<>','\n').replace('&gt;&gt;','>>').replace('/dat','').replace('.dat','')
+    with open('./'+str(ID)+'.txt','w') as file:
+        file.write(format)
 
 
 #ID = input('記入方法は【ID:OOOOOOO】>>')
 ID = input('記入方法は【ID:iWG6wjJn】>>')
 #getURLs()
 getALL()
-with open('./'+str(ID)+'.txt','r') as file:
-    raw = file.read()
-    formated = raw.replace('<br>','\n').replace('<><>','\b').replace('<>','\n').replace('&gt;&gt;','>>')
-with open('./'+str(ID)+'.txt','w') as file:
-    file.write(formated)
+format()
+
 '''
 終わったこと
 subject.txtからdatを取得してURL化したurl配列が完成
 ついでにスレタイもゲット
-
-やること
 input関数でIDを取得する。
 IDを見つけたらその行を取得する。
 <br>を¥nに変換
 &gt;&gt;を>>に変換
 最後にテキストデータとして書き出したい
+/dat/と.datを消した表示にする
+
+やること
+スレタイやURLをなんども表示しないようにする
+
 
 '''
