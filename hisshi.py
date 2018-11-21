@@ -34,7 +34,7 @@ def getALL():
 
     for thread_title, dat in zip(title, url):
         #print(thread_title,dat)#スレタイとURL
-        if i > 3000:
+        if i > 2000:
             break
         subject = dat
         request = urllib.request.Request(url=subject, headers=headers)#datとheaderのデータを入れる
@@ -67,7 +67,11 @@ def getALL():
 ID = input('記入方法は【ID:iWG6wjJn】>>')
 #getURLs()
 getALL()
-
+with open('./'+str(ID)+'.txt','r') as file:
+    raw = file.read()
+    formated = raw.replace('<br>','\n').replace('<><>','\b').replace('<>','\n').replace('&gt;&gt;','>>')
+with open('./'+str(ID)+'.txt','w') as file:
+    file.write(formated)
 '''
 終わったこと
 subject.txtからdatを取得してURL化したurl配列が完成
