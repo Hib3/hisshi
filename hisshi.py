@@ -34,7 +34,7 @@ def getALL():
 
     for thread_title, dat in zip(title, url):
         #print(thread_title,dat)#スレタイとURL
-        if i > 10:
+        if i > 3000:
             break
         subject = dat
         request = urllib.request.Request(url=subject, headers=headers)#datとheaderのデータを入れる
@@ -47,16 +47,16 @@ def getALL():
             #ファイルの書き込み
             #with open('./hisshi.txt','w') as file:
             with open('./'+str(ID)+'.txt','a') as file:
+                for line in lines:
             #ここに文字列検索を入れる。もし、IDが見つかったら、スレタイとURLを記載する。textからIDが見つかったら、記入、改行する。
-
-                if any((str(ID) in x) for x in lines):
-                    file.write(thread_title)
-                    file.write(dat+str('\n'))
-                    file.write(str(lines)+str('\n'))
-                    print(lines[0])
-                    file.write(str('\n'))
-                else:
-                    i+=1
+                    if line.find(ID) != -1:
+                        file.write(thread_title)
+                        file.write(dat+str('\n'))
+                        file.write(line)
+                        print(line)
+                        file.write(str('\n'))
+                    else:
+                        i+=1
             #continue
         #continue
 
